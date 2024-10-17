@@ -1,13 +1,88 @@
+/* General app styling */
+.app {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+}
 
-img{
+/* Heading style */
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Add Property Form */
+.add-property-form {
+    margin-bottom: 30px;
+}
+
+.add-property-form input {
+    padding: 10px;
+    margin: 5px;
     width: 200px;
-    height: 200px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
-.products{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+
+.add-property-form button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
-article{
-    background-color: rgb(154, 154, 154);
+
+.add-property-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Property List */
+.property-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Property Card */
+.property-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    width: 250px;
+    text-align: left;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.property-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.property-card h2 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.property-card p {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+}
+
+.property-card button {
+    padding: 8px 12px;
+    background-color: #FF6347;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.property-card button:hover {
+    background-color: #ff3d26;
 }
