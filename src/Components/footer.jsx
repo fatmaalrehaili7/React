@@ -1,0 +1,14 @@
+
+const Footer = () => {
+  return (
+    <footer className="footer">
+      <p>© 2024 Jewelry Store. All rights reserved.</p>
+      <ul className="contact">
+        <li><a href="#instagram">Instagram</a></li>
+        <li><a href="#twitter">Twitter</a></li>
+      </ul>
+    </footer>
+  );
+};
+
+export default Footer;

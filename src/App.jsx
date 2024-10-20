@@ -1,4 +1,6 @@
 import './index.css';
+import Header from './Components/header';
+import Footer from './Components/footer';
 import Products from './Components/Products';
 import { Properties } from '../data'; 
 import { useState } from 'react';
@@ -19,11 +21,14 @@ const App = () => {
 
   return (
     <div className="app">
+      <Header />
       <h1>Product Listings</h1>
       <AddPropertyForm onAddProperty={addProperty} />
-      <Products properties={properties} onDelete={deleteProperty} /> 
+      <Products properties={properties} onDelete={deleteProperty} />
+      <Footer />
     </div>
   );
+
 };
 
 export default App;

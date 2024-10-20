@@ -4,12 +4,34 @@
     text-align: center;
     margin: 20px;
 }
-
-/* Heading style */
-h1 {
-    color: #333;
-    margin-bottom: 20px;
+/*Header Style*/
+.header {
+    background-color: #062343;
+    padding: 20px;
+    color: #fff;
+    text-align: center;
 }
+.logo{
+    color: #fff;
+}
+
+.nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+   
+}
+
+.nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
 
 /* Add Property Form */
 .add-property-form {
@@ -85,4 +107,45 @@ h1 {
 
 .property-card button:hover {
     background-color: #ff3d26;
+}
+
+
+.footer {
+    background-color: #062343;
+    color: #fff;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 2rem;
+    
+}
+/* Foteer style */
+.footer a {
+    color: #f9f9f9;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+.contact{
+    list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-content h1 {
+        font-size: 24px;
+    }
+
+    .header h1 {
+        font-size: 20px;
+    }
 }
