@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { nanoid } from 'nanoid';
-import Product from './Product';
+import uploadImage from '../utility/uploadImage';
 
 const AddPropertyForm = ({ onAddProperty }) => {
   const [title, setTitle] = useState('');
   const [location, setLocation] = useState('');
   const [price, setPrice] = useState('');
-  const [imageFile, setImageFile] = useState(null); 
+  const [imageFile, setImageFile] = useState(null);
   const [imageUrl, setImageUrl] = useState('');
   const [errors, setErrors] = useState({
     title: '',
@@ -14,8 +14,8 @@ const AddPropertyForm = ({ onAddProperty }) => {
     price: '',
     imageUrl: ''
   });
+  const [loading, setLoading] = useState(false); 
 
-  // Validation Function
   const validateForm = () => {
     const newErrors = { title: '', location: '', price: '', imageUrl: '' };
     let isValid = true;
@@ -44,42 +44,51 @@ const AddPropertyForm = ({ onAddProperty }) => {
     return isValid;
   };
 
-  // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (validateForm()) {
-      const newProperty = {
-        id: nanoid(),
-        title,
-        location,
-        price: Number(price),
-        imageUrl, 
-      };
-      onAddProperty(newProperty);
-      
-      setTitle('');
-      setLocation('');
-      setPrice('');
-      setImageFile(null);
-      setImageUrl('');
+      setLoading(true);
+      try {
+        const uploadedImageUrl = await uploadImage(imageFile);
+        setImageUrl(uploadedImageUrl);
+
+        const newProperty = {
+          id: nanoid(),
+          title,
+          location,
+          price: Number(price),
+          imageUrl: uploadedImageUrl, 
+        };
+
+        onAddProperty(newProperty);
+
+        setTitle('');
+        setLocation('');
+        setPrice('');
+        setImageFile(null);
+        setImageUrl('');
+      } catch (error) {
+        console.error('Error during image upload', error);
+      } finally {
+        setLoading(false);
+      }
     } else {
       console.log(errors);
     }
   };
 
-  // Handle file input for image 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setImageFile(file); 
-      setImageUrl(URL.createObjectURL(file));
+      setImageFile(file);
+      setImageUrl(URL.createObjectURL(file)); 
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="add-property-form">
-      <h2>Add New Product</h2>
+      <h2>Add New Property</h2>
 
       <input
         type="text"
@@ -121,9 +130,12 @@ const AddPropertyForm = ({ onAddProperty }) => {
         </div>
       )}
 
-      <button type="submit">Add Product</button>
+      <button type="submit" disabled={loading}>
+        {loading ? 'Uploading...' : 'Add Property'}
+      </button>
     </form>
   );
 };
 
 export default AddPropertyForm;
+
