@@ -1,10 +1,10 @@
 import './index.css';
-import Header from './Components/header';
-import Footer from './Components/footer';
+import Header from './Layout/header';
+import Footer from './Layout/footer';
 import Products from './Components/Products';
 import { Properties } from '../data'; 
 import { useState } from 'react';
-import AddPropertyForm from './Components/AddPropertyForm';  
+import AddPropertyForm from './Forms/AddPropertyForm';  
 
 const App = () => {
   const [properties, setProperties] = useState(Properties);

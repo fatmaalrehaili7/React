@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 import uploadImage from '../utility/uploadImage';
 
+
 const AddPropertyForm = ({ onAddProperty }) => {
   const [title, setTitle] = useState('');
   const [location, setLocation] = useState('');
@@ -52,6 +53,7 @@ const AddPropertyForm = ({ onAddProperty }) => {
       try {
         const uploadedImageUrl = await uploadImage(imageFile);
         setImageUrl(uploadedImageUrl);
+        
 
         const newProperty = {
           id: nanoid(),
@@ -119,6 +121,7 @@ const AddPropertyForm = ({ onAddProperty }) => {
 
       <input
         type="file"
+        accept="image/*"
         onChange={handleImageChange}
         required
       />

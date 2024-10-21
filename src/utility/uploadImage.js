@@ -13,6 +13,7 @@ const uploadImage = async (file) => {
     const response = await axios.post(cloudinaryUrl, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
+    console.log('Cloudinary Response:', response.data);
     return response.data.secure_url; 
   } catch (error) {
     console.error('Error uploading image:', error);
