@@ -1,5 +1,5 @@
-// src/Forms/UpdatePropertyForm.jsx
 import { useState } from 'react';
+
 import PropTypes from 'prop-types';
 import uploadImage from '../Utility/uploadImage';
 

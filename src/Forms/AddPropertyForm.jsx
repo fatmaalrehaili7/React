@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { nanoid } from 'nanoid';
 import uploadImage from '../Utility/uploadImage';
+import PropTypes from 'prop-types';
 
 
 const AddPropertyForm = ({ onAddProperty }) => {
@@ -139,6 +140,17 @@ const AddPropertyForm = ({ onAddProperty }) => {
       </button>
     </form>
   );
+};
+
+AddPropertyForm.propTypes = {
+  property: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    imageUrl: PropTypes.string,
+  }).isRequired,
+  onAddProperty: PropTypes.func.isRequired,
 };
 
 export default AddPropertyForm;

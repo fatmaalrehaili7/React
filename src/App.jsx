@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './index.css';
 import Header from './Layout/header';
