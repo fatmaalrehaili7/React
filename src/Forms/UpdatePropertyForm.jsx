@@ -1,22 +1,21 @@
+// src/Forms/UpdatePropertyForm.jsx
 import { useState } from 'react';
-
-import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 import uploadImage from '../Utility/uploadImage';
 
-
-const AddPropertyForm = ({ onAddProperty }) => {
-  const [title, setTitle] = useState('');
-  const [location, setLocation] = useState('');
-  const [price, setPrice] = useState('');
+const UpdatePropertyForm = ({ property, onUpdateProperty }) => {
+  const [title, setTitle] = useState(property.title);
+  const [location, setLocation] = useState(property.location);
+  const [price, setPrice] = useState(property.price);
   const [imageFile, setImageFile] = useState(null);
-  const [imageUrl, setImageUrl] = useState('');
+  const [imageUrl, setImageUrl] = useState(property.imageUrl);
   const [errors, setErrors] = useState({
     title: '',
     location: '',
     price: '',
     imageUrl: ''
   });
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
 
   const validateForm = () => {
     const newErrors = { title: '', location: '', price: '', imageUrl: '' };
@@ -37,7 +36,7 @@ const AddPropertyForm = ({ onAddProperty }) => {
       isValid = false;
     }
 
-    if (!imageFile) {
+    if (!imageFile && !imageUrl) {
       newErrors.imageUrl = 'Image is required.';
       isValid = false;
     }
@@ -52,32 +51,26 @@ const AddPropertyForm = ({ onAddProperty }) => {
     if (validateForm()) {
       setLoading(true);
       try {
-        const uploadedImageUrl = await uploadImage(imageFile);
-        setImageUrl(uploadedImageUrl);
-        
+        let uploadedImageUrl = imageUrl;
+        if (imageFile) {
+          uploadedImageUrl = await uploadImage(imageFile);
+        }
 
-        const newProperty = {
-          id: nanoid(),
+        const updatedProperty = {
+          ...property,
           title,
           location,
           price: Number(price),
-          imageUrl: uploadedImageUrl, 
+          imageUrl: uploadedImageUrl,
         };
 
-        onAddProperty(newProperty);
+        onUpdateProperty(property.id, updatedProperty);
 
-        setTitle('');
-        setLocation('');
-        setPrice('');
-        setImageFile(null);
-        setImageUrl('');
       } catch (error) {
         console.error('Error during image upload', error);
       } finally {
         setLoading(false);
       }
-    } else {
-      console.log(errors);
     }
   };
 
@@ -90,8 +83,8 @@ const AddPropertyForm = ({ onAddProperty }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="add-property-form">
-      <h2>Add New Property</h2>
+    <form onSubmit={handleSubmit} className="update-property-form">
+      <h2>Update Property</h2>
 
       <input
         type="text"
@@ -124,7 +117,6 @@ const AddPropertyForm = ({ onAddProperty }) => {
         type="file"
         accept="image/*"
         onChange={handleImageChange}
-        required
       />
       {errors.imageUrl && <span>{errors.imageUrl}</span>}
 
@@ -135,11 +127,21 @@ const AddPropertyForm = ({ onAddProperty }) => {
       )}
 
       <button type="submit" disabled={loading}>
-        {loading ? 'Uploading...' : 'Add Property'}
+        {loading ? 'Updating...' : 'Update Property'}
       </button>
     </form>
   );
 };
 
-export default AddPropertyForm;
+UpdatePropertyForm.propTypes = {
+  property: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    imageUrl: PropTypes.string,
+  }).isRequired,
+  onUpdateProperty: PropTypes.func.isRequired,
+};
 
+export default UpdatePropertyForm;

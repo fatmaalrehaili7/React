@@ -1,4 +1,4 @@
-const Product = ({ property, onDelete }) => {
+const Product = ({ property, onDelete, onEdit }) => {
   const { title, location, price, imageUrl } = property;
 
   return (
@@ -8,6 +8,7 @@ const Product = ({ property, onDelete }) => {
       <p>{location}</p>
       <p>Price: ${price}</p>
       <button onClick={() => onDelete(property)}>Delete Probarty</button>
+      <button onClick={() => onEdit(property)}>Edit Property</button> 
     </div>
   );
 };
