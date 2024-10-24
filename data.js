@@ -1,76 +1,45 @@
 
 export const Properties = [
   {
-    "id": 1,
-    "title": "Harry Potter and the Sorcerer's Stone",
-    "price": 20,
-    "location": "Saudi Arabia",
-    "imageUrl": "https://duabookpalace.com/cdn/shop/files/philoher_720x_47a887c1-f402-4048-afe4-4ef6ec73e9a8.jpg?v=1683723627"
+    id: 'V1StGXR8_Z5jdHi6B-myT',
+    title: 'Luxury Apartment in Downtown',
+    location: 'New York, NY',
+    price: 950000,
+    imageUrl:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQID82F4dvpgrCv5LHM85C6H5cLQaWbrJwWiw&s'
   },
   {
-    "id": 2,
-    "title": "The Midnight Library",
-    "price": 20,
-    "location": "Saudi Arabia",
-    "imageUrl": "https://m.media-amazon.com/images/I/71FsIkGF3pL._SY466_.jpg"
+    id: 'V1StGXR8_Z5jdHi6B-myU',
+    title: 'Cozy Cottage by the Lake',
+    location: 'Lake Tahoe, CA',
+    price: 450000,
+    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSse1lVgz8Ewc_NDqYy5Y6BgdVPiDA7nPZkmw&s'
   },
   {
-    "id": 3,
-    "title": "Black Swan the Book Thief",
-    "price": 25,
-    "location": "Saudi Arabia",
-    "imageUrl": "https://m.media-amazon.com/images/I/41LuUlddrhL._SY445_SX342_.jpg"
+    id: 'V1StGXR8_Z5jdHi6B-myV',
+    title: 'Modern Condo with City View',
+    location: 'Los Angeles, CA',
+    price: 850000,
+    imageUrl: 'https://t3.ftcdn.net/jpg/08/39/69/92/360_F_839699254_6mEWMDR3TR7BxeKW3kM0HVlho8QlQ6GS.jpg'
+    
   },
   {
-    "id": 4,
-    "title": "It Ends with Us by Colleen Hoover",
-    "price": 9.99,
-    "location": "Saudi Arabia",
-    "imageUrl": "https://m.media-amazon.com/images/I/817vqET828L._SY466_.jpg"
+    id: 'V1StGXR8_Z5jdHi6B-myW',
+    title: 'Spacious Family House',
+    location: 'Austin, TX',
+    price: 700000,
+    imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzdTtrImo0T08YDKCvi5FqrD8cSvO5DbDmew&s'
   },
   {
-    "id": 5,
-    "title": "A Good Girl's Guide To Murder",
-    "price": 10.99,
-    "location": "Saudi Arabia",
-    "imageUrl": "https://m.media-amazon.com/images/I/51wlOYeH4BL._SY445_SX342_.jpg"
-  },
-  {
-    "id": 6,
-    "title": "It Starts with Us",
-    "price": 6.99,
-    "location": "Saudi Arabia",
-    "imageUrl": "https://m.media-amazon.com/images/I/81FummIc2eL._SY466_.jpg"
-  },
-  {
-    "id": 7,
-    "title": "The Silent Patient",
-    "price": 14.99,
-    "location": "Saudi Arabia",
-    "imageUrl": "https://m.media-amazon.com/images/I/51dK8jYPA1L._SY445_SX342_.jpg"
-  },
-  {
-    "id": 8,
-    "title": "Where the Crawdads Sing",
-    "price": 18.99,
-    "location": "Saudi Arabia",
-    "imageUrl": "https://m.media-amazon.com/images/I/51Oi0gtmjhL._SY445_SX342_.jpg"
-  },
-  {
-    "id": 9,
-    "title": "The Little Prince",
-    "price": 12.99,
-    "location": "Saudi Arabia",
-    "imageUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1367545443i/157993.jpg"
-  },
-  {
-    "id": 10,
-    "title": "Harry Potter and the Goblet of Fire",
-    "price": 22.99,
-    "location": "Saudi Arabia",
-    "imageUrl": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1554006152i/6.jpg"
+    id: 'V1StGXR8_Z5jdHi6B-myX',
+    title: 'Beachfront Villa',
+    location: 'Miami, FL',
+    price: 1500000,
+    imageUrl:'https://imgcdn.stablediffusionweb.com/2024/3/22/67bdd033-c3de-4a9e-a1e5-64f692b05dc6.jpg'
   }
 ];
+
+
+
 
 
 

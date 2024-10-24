@@ -2,7 +2,7 @@ import Product from './Product';
 
 const Products = ({ properties, onDelete }) => {
   if (properties.length === 0) {
-    return <p>No product available at the moment.</p>;
+    return <p>No property available at the moment.</p>;
   }
 
   return (

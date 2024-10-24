@@ -1,9 +1,10 @@
+import { useState } from 'react';
+
 import './index.css';
 import Header from './Layout/header';
 import Footer from './Layout/footer';
 import Products from './Components/Products';
 import { Properties } from '../data'; 
-import { useState } from 'react';
 import AddPropertyForm from './Forms/AddPropertyForm';  
 
 const App = () => {
@@ -22,7 +23,7 @@ const App = () => {
   return (
     <div className="app">
       <Header />
-      <h1>Product Listings</h1>
+      <h1>Proparty Listings</h1>
       <AddPropertyForm onAddProperty={addProperty} />
       <Products properties={properties} onDelete={deleteProperty} />
       <Footer />

@@ -7,7 +7,7 @@ const Product = ({ property, onDelete }) => {
       <h2>{title}</h2>
       <p>{location}</p>
       <p>Price: ${price}</p>
-      <button onClick={() => onDelete(property)}>Delete Product</button>
+      <button onClick={() => onDelete(property)}>Delete Probarty</button>
     </div>
   );
 };

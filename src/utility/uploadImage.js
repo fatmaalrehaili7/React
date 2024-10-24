@@ -20,6 +20,6 @@ const uploadImage = async (file) => {
     throw error;
   }
 };
-
+ 
 export default uploadImage;
 
