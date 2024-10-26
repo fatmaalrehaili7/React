@@ -1,42 +1,37 @@
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import uploadImage from '../Utility/uploadImage';
 
 const UpdatePropertyForm = ({ property, onUpdateProperty }) => {
-  const [title, setTitle] = useState(property.title);
-  const [location, setLocation] = useState(property.location);
-  const [price, setPrice] = useState(property.price);
+  const [title, setTitle] = useState('');
+  const [location, setLocation] = useState('');
+  const [price, setPrice] = useState('');
   const [imageFile, setImageFile] = useState(null);
-  const [imageUrl, setImageUrl] = useState(property.imageUrl);
+  const [imageUrl, setImageUrl] = useState('');
   const [errors, setErrors] = useState({
     title: '',
     location: '',
     price: '',
-    imageUrl: ''
+    imageUrl: '',
   });
   const [loading, setLoading] = useState(false);
+
+  // Check if property is defined and set state accordingly
+  useEffect(() => {
+    if (property) {
+      setTitle(property.title);
+      setLocation(property.location);
+      setPrice(property.price);
+      setImageUrl(property.imageUrl);
+    }
+  }, [property]);
 
   const validateForm = () => {
     const newErrors = { title: '', location: '', price: '', imageUrl: '' };
     let isValid = true;
 
-    if (title.trim() === '' || title.length < 3) {
-      newErrors.title = 'Title must be at least 3 characters.';
-      isValid = false;
-    }
-
-    if (location.trim() === '' || location.length < 3) {
-      newErrors.location = 'Location must be at least 3 characters.';
-      isValid = false;
-    }
-
-    if (price === '' || isNaN(price) || Number(price) <= 0) {
-      newErrors.price = 'Price must be a positive number.';
-      isValid = false;
-    }
-
-    if (!imageFile && !imageUrl) {
+    // Validate image only if a new image is not provided
+    if (imageFile && imageFile.size === 0) {
       newErrors.imageUrl = 'Image is required.';
       isValid = false;
     }
@@ -51,21 +46,23 @@ const UpdatePropertyForm = ({ property, onUpdateProperty }) => {
     if (validateForm()) {
       setLoading(true);
       try {
-        let uploadedImageUrl = imageUrl;
+        let uploadedImageUrl = property.imageUrl; // Default to current image URL
+
+        // If a new image is provided, upload it
         if (imageFile) {
           uploadedImageUrl = await uploadImage(imageFile);
         }
 
         const updatedProperty = {
-          ...property,
-          title,
-          location,
-          price: Number(price),
+          id: property.id,
+          title: title.trim() !== '' ? title : property.title, // Keep current if not updated
+          location: location.trim() !== '' ? location : property.location, // Keep current if not updated
+          price: price ? Number(price) : property.price, // Keep current if not updated
           imageUrl: uploadedImageUrl,
         };
 
+        console.log('Updating property:', updatedProperty); // Debug log
         onUpdateProperty(property.id, updatedProperty);
-
       } catch (error) {
         console.error('Error during image upload', error);
       } finally {
@@ -78,7 +75,10 @@ const UpdatePropertyForm = ({ property, onUpdateProperty }) => {
     const file = e.target.files[0];
     if (file) {
       setImageFile(file);
-      setImageUrl(URL.createObjectURL(file)); 
+      setImageUrl(URL.createObjectURL(file)); // Create a preview URL
+    } else {
+      setImageFile(null); // Clear if no file is selected
+      setImageUrl(''); // Clear preview
     }
   };
 
@@ -91,7 +91,6 @@ const UpdatePropertyForm = ({ property, onUpdateProperty }) => {
         placeholder="Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
-        required
       />
       {errors.title && <span>{errors.title}</span>}
 
@@ -100,7 +99,6 @@ const UpdatePropertyForm = ({ property, onUpdateProperty }) => {
         placeholder="Location"
         value={location}
         onChange={(e) => setLocation(e.target.value)}
-        required
       />
       {errors.location && <span>{errors.location}</span>}
 
@@ -109,7 +107,6 @@ const UpdatePropertyForm = ({ property, onUpdateProperty }) => {
         placeholder="Price"
         value={price}
         onChange={(e) => setPrice(e.target.value)}
-        required
       />
       {errors.price && <span>{errors.price}</span>}
 
@@ -136,12 +133,13 @@ const UpdatePropertyForm = ({ property, onUpdateProperty }) => {
 UpdatePropertyForm.propTypes = {
   property: PropTypes.shape({
     id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    location: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
+    title: PropTypes.string,
+    location: PropTypes.string,
+    price: PropTypes.number,
     imageUrl: PropTypes.string,
   }).isRequired,
   onUpdateProperty: PropTypes.func.isRequired,
 };
 
 export default UpdatePropertyForm;
+
