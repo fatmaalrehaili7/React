@@ -1,5 +1,5 @@
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <footer className="footer">
       <p>© 2024 Real Estate. All rights reserved.</p>
@@ -11,4 +11,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+

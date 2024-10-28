@@ -3,29 +3,15 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 import './index.css';
-import Header from './Layout/Header';
-import Footer from './Layout/Footer';
+
+import { Footer, Header } from './Layout';
 import Products from './Components/Products';
 import { Properties } from '../data'; 
 import AddPropertyForm from './Forms/AddPropertyForm';
 import UpdatePropertyForm from './Forms/UpdatePropertyForm';
 import Login from './Components/Login';
+import ProtectedRoute from './Route/ProtectedRoute';
 
-
-const UpdatePropertyWrapper = ({ onUpdateProperty }) => {
-  const location = useLocation();
-
-  return (
-    <>
-      <Header />
-      <UpdatePropertyForm
-        property={location.state?.property} 
-        onUpdateProperty={onUpdateProperty}
-      />
-      <Footer />
-    </>
-  );
-};
 
 const App = () => {
   const [properties, setProperties] = useState(Properties);
@@ -51,6 +37,19 @@ const App = () => {
     );
     setEditingProperty(null); 
   };
+// Wrapper component to use location within the router context
+const UpdatePropertyWrapper = ({ onUpdateProperty }) => {
+  const location = useLocation(); 
+  return (
+    <>
+     
+      <UpdatePropertyForm
+        property={location.state?.property} 
+        onUpdateProperty={onUpdateProperty}
+      />
+    </>
+  );
+};
 
   const router = createBrowserRouter([
     {
@@ -64,20 +63,6 @@ const App = () => {
       ),
     },
     {
-      path: '/add-property',
-      element: (
-        <>
-          <Header />
-          <AddPropertyForm onAddProperty={handleAddProperty} />
-          <Footer />
-        </>
-      ),
-    },
-    {
-      path: '/update-property',
-      element: <UpdatePropertyWrapper onUpdateProperty={handleUpdateProperty} />, // Use the wrapper here
-    },
-    {
       path: '/login',
       element: (
         <>
@@ -87,11 +72,38 @@ const App = () => {
         </>
       ),
     },
+    {
+      path: '/',
+      element: <ProtectedRoute />,
+      children: [
+        {
+          path: '/add-property',
+          element: (
+            <>
+              <Header />
+              <AddPropertyForm onAddProperty={handleAddProperty} />
+              <Footer />
+            </>
+          ),
+        },
+        {
+          path: '/update-property',
+          element: (
+            <>
+             <Header />
+              <UpdatePropertyWrapper onUpdateProperty={handleUpdateProperty} />
+               <Footer />
+            </>
+          ),
+        },
+      ],
+    },
   ]);
 
   return <RouterProvider router={router} />;
 };
-
 export default App;
+
+
 
 

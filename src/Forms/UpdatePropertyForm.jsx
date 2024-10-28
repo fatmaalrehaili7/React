@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import uploadImage from '../Utility/uploadImage';
+import { useNavigate } from 'react-router-dom';
 
 const UpdatePropertyForm = ({ property, onUpdateProperty }) => {
   const [title, setTitle] = useState('');
@@ -14,7 +15,9 @@ const UpdatePropertyForm = ({ property, onUpdateProperty }) => {
     price: '',
     imageUrl: '',
   });
+
   const [loading, setLoading] = useState(false);
+  const navigate= useNavigate();
 
   // Check if property is defined and set state accordingly
   useEffect(() => {
@@ -30,7 +33,6 @@ const UpdatePropertyForm = ({ property, onUpdateProperty }) => {
     const newErrors = { title: '', location: '', price: '', imageUrl: '' };
     let isValid = true;
 
-    // Validate image only if a new image is not provided
     if (imageFile && imageFile.size === 0) {
       newErrors.imageUrl = 'Image is required.';
       isValid = false;
@@ -46,22 +48,22 @@ const UpdatePropertyForm = ({ property, onUpdateProperty }) => {
     if (validateForm()) {
       setLoading(true);
       try {
-        let uploadedImageUrl = property.imageUrl; // Default to current image URL
+        let uploadedImageUrl = property.imageUrl;
 
-        // If a new image is provided, upload it
+        
         if (imageFile) {
           uploadedImageUrl = await uploadImage(imageFile);
         }
 
         const updatedProperty = {
           id: property.id,
-          title: title.trim() !== '' ? title : property.title, // Keep current if not updated
-          location: location.trim() !== '' ? location : property.location, // Keep current if not updated
-          price: price ? Number(price) : property.price, // Keep current if not updated
+          title: title.trim() !== '' ? title : property.title, 
+          location: location.trim() !== '' ? location : property.location, 
+          price: price ? Number(price) : property.price,
           imageUrl: uploadedImageUrl,
         };
-
-        console.log('Updating property:', updatedProperty); // Debug log
+        navigate('/');
+        console.log('Updating property:', updatedProperty); 
         onUpdateProperty(property.id, updatedProperty);
       } catch (error) {
         console.error('Error during image upload', error);
@@ -75,10 +77,10 @@ const UpdatePropertyForm = ({ property, onUpdateProperty }) => {
     const file = e.target.files[0];
     if (file) {
       setImageFile(file);
-      setImageUrl(URL.createObjectURL(file)); // Create a preview URL
+      setImageUrl(URL.createObjectURL(file)); 
     } else {
-      setImageFile(null); // Clear if no file is selected
-      setImageUrl(''); // Clear preview
+      setImageFile(null); 
+      setImageUrl(''); 
     }
   };
 
@@ -142,4 +144,3 @@ UpdatePropertyForm.propTypes = {
 };
 
 export default UpdatePropertyForm;
-

@@ -24,22 +24,22 @@ const AddPropertyForm = ({ onAddProperty }) => {
     let isValid = true;
 
     if (title.trim() === '' || title.length < 3) {
-      newErrors.title = 'Title must be at least 3 characters.';
+      newErrors.title = alert('Title must be at least 3 characters.');
       isValid = false;
     }
 
     if (location.trim() === '' || location.length < 3) {
-      newErrors.location = 'Location must be at least 3 characters.';
+      newErrors.location = alert('Location must be at least 3 characters.');
       isValid = false;
     }
 
     if (price === '' || isNaN(price) || Number(price) <= 0) {
-      newErrors.price = 'Price must be a positive number.';
+      newErrors.price = alert('Price must be a positive number.');
       isValid = false;
     }
 
     if (!imageFile) {
-      newErrors.imageUrl = 'Image is required.';
+      newErrors.imageUrl = alert('Image is required.');
       isValid = false;
     }
 
