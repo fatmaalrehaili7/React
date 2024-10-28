@@ -28,5 +28,9 @@
     "eslint-plugin-react-refresh": "^0.4.12",
     "globals": "^15.9.0",
     "vite": "^5.4.8"
-  }
+  },
+  
+    "homepage": "https://github.com/fatmaalrehaili7/sda-onsite-3-react-real-estate-website"
+
+  
 }
