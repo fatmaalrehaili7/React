@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import uploadImage from '../Utility/uploadImage';
+import uploadImage from '../Utility/uploadImage'
 import { useNavigate } from 'react-router-dom';
 
 const UpdatePropertyForm = ({ property, onUpdateProperty }) => {
