@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-export const Header = () => {
+const Header = () => {
   const navigate = useNavigate();
 
   // Function to handle logout
@@ -26,7 +26,7 @@ export const Header = () => {
   );
 };
 
-
+export default Header;
 
 
 
