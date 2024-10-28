@@ -3,8 +3,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 import './index.css';
-import  Header from './Layout';
-import Footer from './Layout';
+import Header from './Layout/header';
+import Footer from './Layout/footer';
 import Products from './Components/Products';
 import { Properties } from '../data'; 
 import AddPropertyForm from './Forms/AddPropertyForm';

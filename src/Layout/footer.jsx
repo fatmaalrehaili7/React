@@ -1,5 +1,5 @@
 
-export const Footer = () => {
+const Footer = () => {
   return (
     <footer className="footer">
       <p>© 2024 Real Estate. All rights reserved.</p>
